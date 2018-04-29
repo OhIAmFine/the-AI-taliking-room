@@ -10,7 +10,7 @@ import 'antd/lib/col/style/css'
 // import 'antd/lib/form/style/css'
 
 // import ReactDOM from 'react-dom';
-import '../styles/App.css';
+import '../styles/Login.css';
 
 
 const FormItem = Form.Item;
@@ -73,10 +73,10 @@ const WrappedNormalLoginForm = Form.create()(NormalLoginForm);
 // ReactDOM.render(<WrappedNormalLoginForm />, mountNode);
 
 
-class App extends Component {
+class Login extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="background">
       <div className="login">
         <WrappedNormalLoginForm  />
       </div>
@@ -85,4 +85,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Login;
