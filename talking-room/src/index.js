@@ -2,7 +2,7 @@ import React , {Component} from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 import './index.css';
-import Login from './pages/Login.js';
+import Login from './pages/login.js';
 import registerServiceWorker from './registerServiceWorker';
 
 
