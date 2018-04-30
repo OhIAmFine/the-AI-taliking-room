@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 import './index.css';
 import Login from './pages/login.js';
+import TalkingRoom from './pages/talking-room.js'
 import registerServiceWorker from './registerServiceWorker';
 
 
@@ -12,6 +13,7 @@ class App extends Component {
     return (
     	<Switch>
     		<Route path='/index' component={Login} />
+    		<Route path='/talking' component={TalkingRoom} />
       		<Redirect to="/index" />
      	</Switch>
     );
