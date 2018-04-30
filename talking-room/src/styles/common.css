@@ -1,0 +1,32 @@
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+.mar-top-10 {
+	margin-top: 10px;
+}
+
+.mar-left-20 {
+	margin-left: 20px;
+}
+.fl-right {
+	float: right;
+}
+
+.blo-center {
+	width: 100%;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.no-mar-t {
+	margin-top: 0;
+}
+.no-mar-bot {
+	margin-bottom: 0;
+}
+.no-border {
+	border: none;
+}
