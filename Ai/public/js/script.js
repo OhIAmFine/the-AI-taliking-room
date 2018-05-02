@@ -26,10 +26,11 @@ button.addEventListener('click', () => {
       recorder = rec
       recorder.start()
     })
-    
+    console.log('1')
     setState('recording')
   } else {
-
+    console.log(recorder)
+    console.log('2')
     let buffer = recorder.getBlob()
 
     socket.emit('chat message', buffer)
@@ -71,6 +72,7 @@ function setState(status) {
 function synthVoice(text) {
   const synth = window.speechSynthesis
   const utterance = new SpeechSynthesisUtterance()
+  utterance.lang = 'zh';
   utterance.text = text
   synth.speak(utterance)
 }
@@ -78,6 +80,7 @@ function synthVoice(text) {
 socket.on('bot reply', function (data) {
   console.log(data)
   let replay = data.replay
+  console.log(replay)
   synthVoice(replay)
   outputYou.textContent = data.say
   if (replay === '') replay = '(No answer...)'
