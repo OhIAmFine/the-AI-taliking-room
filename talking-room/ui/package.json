@@ -12,7 +12,8 @@
     "react-scripts": "1.1.1",
     "react-virtualized": "^9.18.5",
     "reqwest": "^2.0.5",
-    "socket.io": "^2.1.0"
+    "socket.io": "^2.1.0",
+    "uws": "^9.148.0"
   },
   "scripts": {
     "start": "react-scripts start",
