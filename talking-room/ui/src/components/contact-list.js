@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { List, message, Avatar, Spin } from 'antd';
+import { List,  Avatar } from 'antd';
 import 'antd/lib/list/style/css';
 import 'antd/lib/message/style/css';
 import 'antd/lib/avatar/style/css';

@@ -23,7 +23,7 @@ class DropdownMenu extends Component {
   render() {
     return (
         <Dropdown overlay={menu} >
-          <a className="ant-dropdown-link" href="#">
+          <a className="ant-dropdown-link" href="www.baidu.com">
            <Icon type="menu-fold" /> 
            <Icon type="down" />
           </a>
