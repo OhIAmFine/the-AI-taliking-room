@@ -43,16 +43,6 @@ function synthVoice(text) {
   synth.speak(utterance)
 }
 
-// socket.on('bot reply', function (data) {
-//   console.log(data)
-//   let replay = data.replay
-//   console.log(replay)
-//   synthVoice(replay)
-//   // outputYou.textContent = data.say
-//   if (replay === '') replay = '(No answer...)'
-//   // outputBot.textContent = replay
-//   setState('initialize')
-// })
 
 class Recorder extends Component {
 	constructor() {
