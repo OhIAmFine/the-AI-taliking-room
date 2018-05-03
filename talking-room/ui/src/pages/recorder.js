@@ -302,8 +302,8 @@ class Recorder extends Component {
     <button onClick =  { this.emitMes } ><i className= {this.recording ? 'ion-ios-mic' : 'ion-radio-waves' }></i></button>
 
     <div class="chat-box">
-      <p>你说: <em class="output-you">...</em></p>
-      <p>机器人回复: <em class="output-bot">...</em></p>
+      <p>你说: <em className="output-you">...</em></p>
+      <p>机器人回复: <em className="output-bot">...</em></p>
     </div>
   </section>
 </div>
