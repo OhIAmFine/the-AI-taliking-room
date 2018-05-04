@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-
+// var app = require('express')();
+// var server = require('http').createServer(app);
 var http = require('http');
 var io = require('socket.io')(http);
 
@@ -54,5 +55,7 @@ io.on('chat message', (socket) => {
     })
 
 })
+
+// server.listen(3001);
 
 module.exports = router;
