@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Icon, Input, Button, Checkbox } from 'antd/lib';
+// import fetch from 'whatwg-fetch';
 import 'antd/lib/icon/style/css'
 import 'antd/lib/input/style/css'
 import 'antd/lib/button/style/css'
@@ -13,6 +14,14 @@ const FormItem = Form.Item;
 class NormalLoginForm extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
+    // console.log(fetch)
+    fetch('http://localhost:8000/users').then((res) => {
+      return res.json();
+    }).then((res) => {
+      console.log(res)
+    })
+    // const result = fetch('http://localhost:8000/users');
+    // console.log(result)
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
