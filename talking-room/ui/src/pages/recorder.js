@@ -6,10 +6,11 @@ import './images/favicon.ico'
 // import './css/icon.min.css'
 
 
-const socket = io('http://localhost:8000', { //指定后台的url地址
-    path: '/recorder', //如果需要的话添加 path 路径以及其他可选项
-});
+// const socket = io('http://localhost:8000', { //指定后台的url地址
+//     path: '/recorder', //如果需要的话添加 path 路径以及其他可选项
+// });
 
+const socket = io('http://localhost:5000');
 /**
  * 设置当前状态
  * 
@@ -51,7 +52,13 @@ class Recorder extends Component {
 		this.recorder = null  // 录音器
 		this.recording = false   // 是否正在录音
 		this.recognizing = false 
+		this.emitMes = this.emitMes.bind(this)
 	}
+	/**
+	 * 设置当前状态
+	 * 
+	 * @param {any} status 
+	 */
 	setState (status) {
 		if( status === 'recording') {
 		    // buttonIcon.classList = ['ion-radio-waves']
@@ -72,7 +79,7 @@ class Recorder extends Component {
 		  }
 	}
 	componentDidMount() {
-
+		var _this = this;
 		socket.on('bot reply', function (data) {
 		  console.log(data)
 		  let replay = data.replay
@@ -81,7 +88,7 @@ class Recorder extends Component {
 		  // outputYou.textContent = data.say
 		  if (replay === '') replay = '(No answer...)'
 		  // outputBot.textContent = replay
-		  this.setState('initialize')
+		  _this.setState('initialize')
 		})
 	}
 	componentWillMount() {
@@ -259,52 +266,50 @@ class Recorder extends Component {
 
 	  window.H5Recorder = H5Recorder;
 	}
+
+	// 发送消息
 	emitMes() {
 		console.log('test')
-		// if (this.recognizing) {
-	 //   		return
-	 //  	}
-	 //  if (! this.recording) {
-	 //    // buttonIcon.classList.remove('ion-ios-mic')
-	 //    // buttonIcon.classList.add('ion-radio-waves')
-	 //    window.H5Recorder.init(function (rec) {
-	 //      this.recorder = rec
-	 //      this.recorder.start()
-	 //    })
-	 //    console.log('1')
-	 //    this.setState('recording')
-	 //  } else {
-	 //    console.log(this.recorder)
-	 //    console.log('2')
-	 //    let buffer = this.recorder.getBlob()
+		var _this = this;
+		if (_this.recognizing) {
+	   		return
+	  	}
+	  if (! _this.recording) {
+	    // buttonIcon.classList.remove('ion-ios-mic')
+	    // buttonIcon.classList.add('ion-radio-waves')
+	    window.H5Recorder.init(function (rec) {
+	      _this.recorder = rec
+	      _this.recorder.start()
+	    })
+	    console.log('1')
+	    _this.setState('recording')
+	  } else {
+	    console.log(_this.recorder)
+	    console.log('2')
+	    let buffer = _this.recorder.getBlob()
 
-	 //    socket.emit('chat message', buffer)
-	 //    this.setState('recognizing')
+	    socket.emit('chat message', buffer)
+	    _this.setState('recognizing')
 	  
-  // }
+  }
 	}
 	render() {
 		return (
 			<div>
-			 <section>
-    <h1>简单AI聊天机器人</h1>
-    <h2>- 基于 Web Speech API</h2>
-    <button onClick =  { this.emitMes } ><i className= {this.recording ? 'ion-ios-mic' : 'ion-radio-waves' }></i></button>
+				<section>
+				    <h1>简单AI聊天机器人</h1>
+				    <h2>- 基于 Web Speech API</h2>
+				    <button onClick =  { this.emitMes } ><i className= {this.recording ? 'ion-ios-mic' : 'ion-radio-waves' }></i></button>
 
-    <div class="chat-box">
-      <p>你说: <em className="output-you">...</em></p>
-      <p>机器人回复: <em className="output-bot">...</em></p>
-    </div>
-  </section>
-</div>
+				    <div className="chat-box">
+				      <p>你说: <em className="output-you">...</em></p>
+				      <p>机器人回复: <em className="output-bot">...</em></p>
+				    </div>
+			  </section>
+			</div>
 			);
 	}
 }
-
-// const Recorder = (
-		
-// 	)
-
 
 
 export default Recorder;
