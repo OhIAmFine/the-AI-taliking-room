@@ -22,18 +22,29 @@ class RegisterForm extends Component {
       if (!err) {
         console.log('Received values of form: ', values);
       }
-      fetch('http://localhost:8000/register', {
-        method: 'POST',
-        body: values,
-        headers:{  
-                    'Content-Type': 'application/x-www-form-urlencoded'  
-                },
-      }).then((res) => {
-        return res.json();
+      console.log(JSON.stringify(values))
+  //     fetch('http://localhost:8000/register',{
+  // method: "POST",
+  // headers: {
+  //   "Content-Type": "application/x-www-form-urlencoded"
+  // },
+  // body: "firstName=Nikhil&favColor=blue&password=easytoguess"}).then((res) => {
+  //       return res.text();
+  //     }).then((res) => {
+  //       console.log(res)
+  //     })
+       fetch('http://localhost:8000/register',{
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(values)}).then((res) => {
+        return res.text();
       }).then((res) => {
         console.log(res)
       })
     });
+
   }
   handleConfirmBlur = (e) => {
     const value = e.target.value;
