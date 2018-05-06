@@ -5,6 +5,7 @@ import './index.css';
 import Login from './pages/login.js';
 import TalkingRoom from './pages/talking-room.js'
 import Recorder from './pages/recorder.js'
+import Register from './pages/register.js'
 import registerServiceWorker from './registerServiceWorker';
 
 
@@ -15,7 +16,8 @@ class App extends Component {
     	<Switch>
     		<Route path='/index' component={Login} />
         <Route path='/talking' component={TalkingRoom} />
-    		<Route path='/recorder' component={Recorder} />
+        <Route path='/recorder' component={Recorder} />
+    		<Route path='/register' component={Register} />
       		<Redirect to="/index" />
      	</Switch>
     );
