@@ -7,8 +7,8 @@ class Login extends Component {
   render() {
     return (
       <div className="background">
-        <div className="login">
-          <RegisterForm  />
+        <div className="register">
+          <RegisterForm  history = { this.props.history } />
         </div>
       </div>
     );
