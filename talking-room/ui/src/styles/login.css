@@ -11,10 +11,14 @@
 }
 
 .login {
-  width: 25rem;
+  width: 20rem;
   margin:  auto;
 }
 
+.register {
+  width: 25rem;
+  margin:  auto;
+}
 .up{
   margin-top: -1rem;
 }

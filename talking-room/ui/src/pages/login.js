@@ -8,7 +8,7 @@ class Login extends Component {
     return (
       <div className="background">
         <div className="login">
-          <LoginForm  />
+          <LoginForm history = { this.props.history } />
         </div>
       </div>
     );

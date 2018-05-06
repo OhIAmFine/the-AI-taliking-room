@@ -1,48 +1,65 @@
 import React,{ Component } from 'react';
-import { Form, Input, Tooltip, Icon, Checkbox, Button } from 'antd';
+import { Redirect  } from 'react-router-dom';
+import { Form, Input, Tooltip, Icon, Checkbox, Button, notification} from 'antd';
 import 'antd/lib/form/style/css';
 import 'antd/lib/input/style/css';
 import 'antd/lib/tooltip/style/css';
 import 'antd/lib/icon/style/css';
 import 'antd/lib/checkbox/style/css';
 import 'antd/lib/button/style/css';
+import 'antd/lib/notification/style/css';
 
 
 const FormItem = Form.Item;
 
+// 消息提醒
+const openNotification = (message) => {
+  notification.open({
+    message: message,
+    icon: <Icon type="smile-circle" style={{ color: '#108ee9' }} />,
+  });
+};
+
+// 路由跳转函数
+const redirectRouter = (router) => (<Redirect to={{  
+  pathname: `/${router}`,  
+}}/>)
+
 class RegisterForm extends Component {
   state = {
     confirmDirty: false,
-    autoCompleteResult: [],
+    redirectTalking: false,
+    redirectRegister: false
   };
   handleSubmit = (e) => {
+    const _this = this;
     console.log('test');
+    // console.log(this.props.history)
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
       }
       console.log(JSON.stringify(values))
-  //     fetch('http://localhost:8000/register',{
-  // method: "POST",
-  // headers: {
-  //   "Content-Type": "application/x-www-form-urlencoded"
-  // },
-  // body: "firstName=Nikhil&favColor=blue&password=easytoguess"}).then((res) => {
-  //       return res.text();
-  //     }).then((res) => {
-  //       console.log(res)
-  //     })
-       fetch('http://localhost:8000/register',{
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify(values)}).then((res) => {
-        return res.text();
-      }).then((res) => {
-        console.log(res)
-      })
+      fetch('http://localhost:8000/register', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(values)}).then((res) => {
+            return res.json();
+          }).then((res) => {
+            // 返回响应成功 注册成功
+            if (res.success) { 
+              console.log(res)
+              openNotification(res.info + '将自动跳转');
+              setTimeout(() => _this.props.history.push('/talking'), 2000);
+            }else {
+              openNotification(res.info);
+              // this.location.refresh()
+              // setTimeout(() => _this.location.href = _this.location.href, 2000);
+            }
+          });
     });
 
   }
@@ -91,6 +108,14 @@ class RegisterForm extends Component {
         },
       },
     };
+
+    // 路由跳转
+    if (this.state.redirectRegister) {  
+      return redirectRouter("register")  
+    }
+    if (this.state.redirectTalking) {  
+      return redirectRouter("talking")  
+    }  
     return (
       <Form onSubmit={this.handleSubmit}>
        <FormItem
