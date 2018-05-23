@@ -14,6 +14,17 @@ import '../styles/common.css'
 const { TextArea } = Input;
 
 class TalkingRoom extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			talker: ''
+		}
+	}
+	changeTalker(talker) {
+		console.log(talker);
+		this.setState({talker: talker})
+		// this.talker = talker;
+	}
 	render () {
 		return (
 			<div className="talking">
@@ -29,12 +40,12 @@ class TalkingRoom extends Component {
 					</div>
 					<Divider />
 					<div className="contact-lists">
-						<ContactList />
+						<ContactList changeTalker = {(talker) => this.changeTalker(talker)} />
 					</div>
 				</div>
 				<div className="content">
 					<div className="contacter-info">
-						<p className="blo-center">HNMB <Icon type="down" /></p>
+						<p className="blo-center">{this.state.talker} <Icon type="down" /></p>
 					</div>
 					<Divider  className="no-mar-t" />
 					<div className="talking-content"></div>

@@ -7,13 +7,14 @@ import './images/favicon.ico'
 
 
 
-function synthVoice(text) {
-  const synth = window.speechSynthesis
-  const utterance = new SpeechSynthesisUtterance()
-  utterance.lang = 'zh';
-  utterance.text = text
-  synth.speak(utterance)
-}
+	function synthVoice(text) {
+	
+	  const synth = window.speechSynthesis
+	  const utterance = new SpeechSynthesisUtterance()
+	  utterance.lang = 'zh';
+	  utterance.text = text
+	  synth.speak(utterance)
+	}
 
 
 class Recorder extends Component {
@@ -236,8 +237,6 @@ class Recorder extends Component {
 	   		return
 	  	}
 	  if (! _this.recording) {
-	    // buttonIcon.classList.remove('ion-ios-mic')
-	    // buttonIcon.classList.add('ion-radio-waves')
 	    window.H5Recorder.init(function (rec) {
 	      _this.recorder = rec
 	      _this.recorder.start()
@@ -248,10 +247,8 @@ class Recorder extends Component {
 	    console.log(_this.recorder)
 	    console.log('2')
 	    let buffer = _this.recorder.getBlob()
-
 	    this.socket.emit('chat message', buffer)
 	    _this.setState('recognizing')
-	  
   }
 	}
 	render() {

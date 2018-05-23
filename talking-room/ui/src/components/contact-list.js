@@ -131,31 +131,57 @@ import 'antd/lib/spin/style/css';
 
 const data = [
   {
-    title: 'Ant Design Title 1',
+    talker: '机器人',
+    description: '你好'
   },
   {
-    title: 'Ant Design Title 2',
+    talker: 'levi',
+    description: 'NMSL'
+
   },
   {
-    title: 'Ant Design Title 3',
+    talker: 'vikon',
+    description: 'ichuang up up up'
+
   },
   {
-    title: 'Ant Design Title 4',
+    talker: 'kedong',
+    description: '狗粉丝'
+
   },
 ];
 
 class ContactList extends Component {
+  constructor(props) {
+    super(props);
+
+  }
+  listClick(e, talker) {
+    // alert(this)
+    const nodes = Array.prototype.slice.call(e.currentTarget.parentNode.children);
+    // console.log(nodes)
+    // console.log(e.currentTarget.parentNode.children)
+    for(let i in nodes) {
+      // console.log(nodes[i])
+      nodes[i].classList.remove('black');
+    }
+    e.currentTarget.classList.add('black');
+    // console.log(description)
+    this.props.changeTalker(talker)
+  }
   render() {
     return (
           <List
           itemLayout="horizontal"
           dataSource={data}
           renderItem={item => (
-            <List.Item  className="list-style">
+            <List.Item  
+            className="list-style"
+            onClick= {(e) => this.listClick(e, item.talker)}>
               <List.Item.Meta
                 avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                title={<a href="https://ant.design">{item.title}</a>}
-                description="Ant Design"
+                title={item.talker}
+                description={item.description}
               />
             </List.Item>
           )}
