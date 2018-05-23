@@ -6,35 +6,6 @@ import './images/favicon.ico'
 // import './css/icon.min.css'
 
 
-// const socket = io('http://localhost:8000', { //指定后台的url地址
-//     path: '/recorder', //如果需要的话添加 path 路径以及其他可选项
-// });
-
-const socket = io('http://localhost:5000');
-/**
- * 设置当前状态
- * 
- * @param {any} status 
- */
-// function setState(status) {
-//   if( status === 'recording') {
-//     // buttonIcon.classList = ['ion-radio-waves']
-//     // outputYou.textContent = '录音中...'
-//     // outputBot.textContent = ''
-//     this.recording = true
-//     this.recognizing = false
-//   } else if( status === 'recognizing') {
-//     // buttonIcon.classList = ['ion-load-d']
-//     // outputYou.textContent = '语音识别中...'
-//     // outputBot.textContent = '语音识别中...'
-//     this.recording = false
-//     this.recognizing = true
-//   } else {
-//     // buttonIcon.classList = ['ion-ios-mic']
-//     this.recording = false
-//     this.recognizing = false
-//   }
-// }
 
 function synthVoice(text) {
   const synth = window.speechSynthesis
@@ -47,8 +18,8 @@ function synthVoice(text) {
 
 class Recorder extends Component {
 	constructor() {
-		// const socket = window.io()
-		super()
+		super();
+        this.socket = io('http://localhost:5000');
 		this.recorder = null  // 录音器
 		this.recording = false   // 是否正在录音
 		this.recognizing = false 
@@ -61,33 +32,23 @@ class Recorder extends Component {
 	 */
 	setState (status) {
 		if( status === 'recording') {
-		    // buttonIcon.classList = ['ion-radio-waves']
-		    // outputYou.textContent = '录音中...'
-		    // outputBot.textContent = ''
 		    this.recording = true
 		    this.recognizing = false
 		  } else if( status === 'recognizing') {
-		    // buttonIcon.classList = ['ion-load-d']
-		    // outputYou.textContent = '语音识别中...'
-		    // outputBot.textContent = '语音识别中...'
-		    this.recording = false
 		    this.recognizing = true
 		  } else {
-		    // buttonIcon.classList = ['ion-ios-mic']
 		    this.recording = false
 		    this.recognizing = false
 		  }
 	}
 	componentDidMount() {
 		var _this = this;
-		socket.on('bot reply', function (data) {
+		this.socket.on('bot reply', function (data) {
 		  console.log(data)
 		  let replay = data.replay
 		  console.log(replay)
 		  synthVoice(replay)
-		  // outputYou.textContent = data.say
 		  if (replay === '') replay = '(No answer...)'
-		  // outputBot.textContent = replay
 		  _this.setState('initialize')
 		})
 	}
@@ -288,7 +249,7 @@ class Recorder extends Component {
 	    console.log('2')
 	    let buffer = _this.recorder.getBlob()
 
-	    socket.emit('chat message', buffer)
+	    this.socket.emit('chat message', buffer)
 	    _this.setState('recognizing')
 	  
   }

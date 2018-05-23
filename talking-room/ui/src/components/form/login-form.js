@@ -48,8 +48,6 @@ class NormalLoginForm extends React.Component {
             }else {
               openNotification(res.info);
               setTimeout(() => _this.props.history.push('/register'), 2000);
-              // this.location.refresh()
-              // setTimeout(() => _this.location.href = _this.location.href, 2000);
             }
           });
     });
