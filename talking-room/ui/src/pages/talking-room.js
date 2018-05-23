@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Avatar, Divider, Icon, Button, Input } from 'antd/lib';
 import DropdownMenu from '../components/dropdown.js'
 import ContactList from '../components/contact-list.js'
-import SearchBar from '../components/form/search-bar.js'
+// import SearchBar from '../components/form/search-bar.js'
 import 'antd/lib/avatar/style/css'
 import 'antd/lib/divider/style/css'
 import 'antd/lib/icon/style/css'
@@ -26,7 +26,6 @@ class TalkingRoom extends Component {
 						</div>
 					</div>
 					<div className="mar-top-10">
-						<SearchBar />
 					</div>
 					<Divider />
 					<div className="contact-lists">
@@ -44,7 +43,7 @@ class TalkingRoom extends Component {
 						<div className="record-func mar-top-10">
 							<Icon type="play-circle-o"  className="mar-left-20" style={{ fontSize:26}} />
 						</div>
-						<TextArea rows={3} className="no-border" />
+						<TextArea rows={4} className="no-border" />
 						<div className="send">
 							<Button>发送</Button>
 						</div>
