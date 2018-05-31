@@ -157,8 +157,10 @@
 
   //获取录音机
   H5Recorder.init = function (callback) {
+    console.log(navigator.mediaDevices)
     navigator.mediaDevices.getUserMedia({ audio: true })
       .then(function (stream) {
+        console.log(stream)
         var rec = new H5Recorder(stream);
         callback(rec);
       })
