@@ -1,0 +1,41 @@
+.background {
+  width: 100%;
+  height: 100%;
+  padding: 15rem 0;
+  background-image: url(../imgs/login1.jpg) ;
+  background-size:100% 100%; 
+  background-attachment: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  animation: 4s 2s reverse linear infinite change-bac;
+}
+
+.login {
+  width: 20rem;
+  margin:  auto;
+}
+
+.register {
+  width: 25rem;
+  margin:  auto;
+}
+.up{
+  margin-top: -1rem;
+}
+
+@keyframes change-bac {
+  50% {
+  background-image: url(../imgs/login1.jpg) ;
+  background-size:100% 100%; 
+  background-attachment: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  }
+  100% {
+  background-image: url(../imgs/login2.jpg) ;
+  background-size:100% 100%; 
+  background-attachment: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  }
+}
