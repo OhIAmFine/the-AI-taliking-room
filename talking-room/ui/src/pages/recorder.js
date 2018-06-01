@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import io from 'socket.io-client'
 
+import { Icon } from 'antd/lib';
+import 'antd/lib/icon/style/css'
 import './css/style.css'
 import './images/favicon.ico'
 // import './css/icon.min.css'
@@ -253,18 +255,7 @@ class Recorder extends Component {
 	}
 	render() {
 		return (
-			<div>
-				<section>
-				    <h1>简单AI聊天机器人</h1>
-				    <h2>- 基于 Web Speech API</h2>
-				    <button onClick =  { this.emitMes } ><i className= {this.recording ? 'ion-ios-mic' : 'ion-radio-waves' }></i></button>
-
-				    <div className="chat-box">
-				      <p>你说: <em className="output-you">...</em></p>
-				      <p>机器人回复: <em className="output-bot">...</em></p>
-				    </div>
-			  </section>
-			</div>
+				    <button  className ='button-re' onClick =  { this.emitMes } ><Icon type= {this.recording ? 'play-circle-o' : 'pause-circle-o' }></Icon></button>
 			);
 	}
 }

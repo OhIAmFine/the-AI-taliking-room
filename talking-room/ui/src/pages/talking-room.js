@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Avatar, Divider, Icon, Button, Input } from 'antd/lib';
 import DropdownMenu from '../components/dropdown.js'
 import ContactList from '../components/contact-list.js'
+import Recorder from './recorder.js'
 // import SearchBar from '../components/form/search-bar.js'
 import 'antd/lib/avatar/style/css'
 import 'antd/lib/divider/style/css'
@@ -24,6 +25,9 @@ class TalkingRoom extends Component {
 		console.log(talker);
 		this.setState({talker: talker})
 		// this.talker = talker;
+	}
+	beginRecorder(e) {
+		alert("begin")
 	}
 	render () {
 		return (
@@ -51,8 +55,9 @@ class TalkingRoom extends Component {
 					<div className="talking-content"></div>
 					<Divider  className="no-mar-t no-mar-bot" />
 					<div className="type-func">
-						<div className="record-func mar-top-10">
-							<Icon type="play-circle-o"  className="mar-left-20" style={{ fontSize:26}} />
+						<div className="record-func mar-top-10" >
+						<Recorder  className="mar-left-20" style={{ fontSize:26}} 
+							onClick = {(e) => this.beginRecorder(e)} />
 						</div>
 						<TextArea rows={4} className="no-border" />
 						<div className="send">
