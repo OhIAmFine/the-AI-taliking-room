@@ -21,6 +21,7 @@
     "request-promise": "^4.2.2",
     "serve-favicon": "~2.4.5",
     "socket.io": "^2.1.0",
+    "uid": "0.0.2",
     "underscore": "^1.8.3"
   }
 }

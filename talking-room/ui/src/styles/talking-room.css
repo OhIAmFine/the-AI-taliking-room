@@ -49,6 +49,13 @@
 	height: 9rem;
 	position: relative;
 }
+.record-func{
+	cursor: pointer;
+}
+.button-re {
+	width: 200px;
+	height: 200px;
+}
 .send {
 	position: absolute;
 	bottom: -60px;
