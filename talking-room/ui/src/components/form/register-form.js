@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 import { Redirect  } from 'react-router-dom';
-import { Form, Input, Tooltip, Icon, Checkbox, Button, notification} from 'antd';
+import { Form, Input, Tooltip, Icon, Checkbox, Button, notification} from 'antd/lib';
 import 'antd/lib/form/style/css';
 import 'antd/lib/input/style/css';
 import 'antd/lib/tooltip/style/css';
