@@ -1,6 +1,6 @@
 .talking {
 	width: 100%;
-	height: 1000px;
+	height: 600px;
 	display: flex;
 	flex-flow: row no-wrap;
 	justify-content: center;
@@ -8,7 +8,7 @@
 
 .side-bar {
 	width: 15rem;
-	height: 1000px;
+	height: 600px;
 	/*flex: 1;*/
 	padding: 10px;
 	font-size: 1rem;
@@ -17,7 +17,7 @@
 
 .content {
 	width: 36rem;
-	height: 1000px;
+	height: 600px;
 	/*flex: 2;*/
 	background: #FFFAF0;
 }
@@ -43,6 +43,7 @@
 .talking-content {
 	width: 100%;
 	height: 20rem;
+	overflow-y: scroll;
 }
 .type-func {
 	width: 100%;
@@ -53,8 +54,9 @@
 	cursor: pointer;
 }
 .button-re {
-	width: 200px;
-	height: 200px;
+	margin-top: 0;
+	width: 150px;
+	height: 150px;
 }
 .send {
 	position: absolute;
@@ -66,8 +68,27 @@
 	background-color: red;
 }*/
 .list-style:hover{
-	background-color: #FFB5C5;
+	background-color: #CDB38B;
 }
 .black {
-	background-color: #FA8072;
+	background-color: #CFCFCF;
+}
+.taklking-spin {
+	display: block;
+	overflow: hidden;
+	/*height: 30px;*/
+	line-height: 30px;
+	margin: 10px;
+	/*padding: 10px;*/
+	/*overflow: hidden;*/
+	color: #696969;
+}
+.taklking-spin div {
+	/*height: 30px;*/
+	/*float: left;*/
+	padding: 5px;
+	background-color: #C6E2FF;
+	border-radius: 5px;
+	font-size: 14px;
+
 }

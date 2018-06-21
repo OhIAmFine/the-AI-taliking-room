@@ -62,7 +62,8 @@ io.on('chat message', (socket) => {
           })
       } else {
         console.error("err")
-        console.log('This is something wrong with what you say')
+        console.log('This is something wrong with what you say');
+        io.broadcast('bot reply', { say: "语音质量不清晰，请重试", replay: "机器人听不清你说什么，重新说吧" })
       }
 
     })

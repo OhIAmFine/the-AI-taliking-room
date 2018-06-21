@@ -131,22 +131,22 @@ import 'antd/lib/spin/style/css';
 
 const data = [
   {
-    talker: '机器人',
+    talker: 'robot',
     description: '你好'
   },
   {
     talker: 'levi',
-    description: 'NMSL'
+    description: '加油'
 
   },
   {
     talker: 'vikon',
-    description: 'ichuang up up up'
+    description: 'thank you'
 
   },
   {
     talker: 'kedong',
-    description: '狗粉丝'
+    description: '...'
 
   },
 ];
@@ -157,6 +157,7 @@ class ContactList extends Component {
 
   }
   listClick(e, talker) {
+
     // alert(this)
     const nodes = Array.prototype.slice.call(e.currentTarget.parentNode.children);
     // console.log(nodes)
@@ -168,6 +169,7 @@ class ContactList extends Component {
     e.currentTarget.classList.add('black');
     // console.log(description)
     this.props.changeTalker(talker)
+    this.props.changeContent(talker)
   }
   render() {
     return (

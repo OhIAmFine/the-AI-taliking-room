@@ -14,7 +14,9 @@ a {
 .fl-right {
 	float: right;
 }
-
+.fl-left{
+	float: left;
+}
 .blo-center {
 	width: 100%;
 	text-align: center;
