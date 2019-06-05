@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import io from 'socket.io-client'
 
+import { Icon } from 'antd/lib';
+import 'antd/lib/icon/style/css'
 import './css/style.css'
 import './images/favicon.ico'
 // import './css/icon.min.css'
@@ -22,8 +24,12 @@ class Recorder extends Component {
 		super();
         this.socket = io('http://localhost:5000');
 		this.recorder = null  // 录音器
-		this.recording = false   // 是否正在录音
-		this.recognizing = false 
+		// this.recording = false   //`` 是否正在录音
+		// this.recognizing = false
+		this.state = {
+			recording: false,
+			recognizing: false
+		}
 		this.emitMes = this.emitMes.bind(this)
 	}
 	/**
@@ -31,15 +37,27 @@ class Recorder extends Component {
 	 * 
 	 * @param {any} status 
 	 */
-	setState (status) {
+	changeState (status) {
 		if( status === 'recording') {
-		    this.recording = true
-		    this.recognizing = false
+			this.setState({
+				recording: true,
+				recognizing: false
+			})
+		    // this.recording = true
+		    // this.recognizing = false
 		  } else if( status === 'recognizing') {
-		    this.recognizing = true
+		  	this.setState({
+		  		recording: false,
+		  		recognizing: true
+		  	})
+		    // this.recognizing = true
 		  } else {
-		    this.recording = false
-		    this.recognizing = false
+		  	this.setState({
+				recording: false,
+				recognizing: false
+			})
+		    // this.recording = false
+		    // this.recognizing = false
 		  }
 	}
 	componentDidMount() {
@@ -47,14 +65,18 @@ class Recorder extends Component {
 		this.socket.on('bot reply', function (data) {
 		  console.log(data)
 		  let replay = data.replay
-		  console.log(replay)
+	    _this.props.addContent(data.say, "fl-right");
+
+		  console.log("replay", replay)
+	    _this.props.addContent(replay, "fl-left");
+
 		  synthVoice(replay)
 		  if (replay === '') replay = '(No answer...)'
-		  _this.setState('initialize')
+		  _this.changeState('initialize')
 		})
 	}
 	componentWillMount() {
-		this.setState('initialize') // 初始化
+		this.changeState('initialize') // 初始化
 
 
 		window.URL = window.URL || window.webkitURL;
@@ -231,40 +253,34 @@ class Recorder extends Component {
 
 	// 发送消息
 	emitMes() {
-		console.log('test')
+		// console.log('test')
 		var _this = this;
-		if (_this.recognizing) {
-	   		return
-	  	}
-	  if (! _this.recording) {
+		// if (_this.state.recognizing) {
+	 //   		return
+	 //  	}
+	  if (! _this.state.recording) {
 	    window.H5Recorder.init(function (rec) {
 	      _this.recorder = rec
 	      _this.recorder.start()
 	    })
 	    console.log('1')
-	    _this.setState('recording')
+	  //   _this.setState({
+			// 	recording: true
+			// })
+	    _this.changeState('recording')
 	  } else {
-	    console.log(_this.recorder)
+	    // console.log(_this.recorder)
 	    console.log('2')
-	    let buffer = _this.recorder.getBlob()
-	    this.socket.emit('chat message', buffer)
-	    _this.setState('recognizing')
+	    let buffer = _this.recorder.getBlob();
+	    this.socket.emit('chat message', buffer);
+	    console.log('send', buffer)
+	    _this.props.addContent("进行语音识别中", "fl-right");
+	    _this.changeState('recognizing');
   }
 	}
 	render() {
 		return (
-			<div>
-				<section>
-				    <h1>简单AI聊天机器人</h1>
-				    <h2>- 基于 Web Speech API</h2>
-				    <button onClick =  { this.emitMes } ><i className= {this.recording ? 'ion-ios-mic' : 'ion-radio-waves' }></i></button>
-
-				    <div className="chat-box">
-				      <p>你说: <em className="output-you">...</em></p>
-				      <p>机器人回复: <em className="output-bot">...</em></p>
-				    </div>
-			  </section>
-			</div>
+				    <button  className ='button-re' onClick =  { this.emitMes } ><Icon type= {this.state.recording ? 'pause-circle-o' : 'play-circle-o' }></Icon></button>
 			);
 	}
 }
